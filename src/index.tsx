@@ -1,8 +1,8 @@
-import React, { DispatchWithoutAction, FC, useState } from 'react';
+import { DispatchWithoutAction, FC, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   useThemeParams,
-  WebAppProvider,
+  WebAppProvider
 } from '@vkruglikov/react-telegram-web-app';
 import { ConfigProvider, theme } from 'antd';
 import 'antd/dist/reset.css';
@@ -24,6 +24,14 @@ const DemoApp: FC<{
   const [colorScheme, themeParams] = useThemeParams();
   const [isBetaVersion, handleRequestBeta] = useBetaVersion(false);
   const [activeBtn, setActiveBtn] = useState(true);
+  const [userPhotoUrl, setUserPhotoUrl] = useState<string>(''); // Fix: Provide a default value for the useState hook
+
+  useEffect(() => {
+    // Предполагается, что URL аватара передается через query-параметры
+    const queryParams = new URLSearchParams(window.location.search);
+    const photoUrl = queryParams.get('photo_url');
+    setUserPhotoUrl(photoUrl || ''); // Fix: Handle the case when photoUrl is null
+  }, []);
 
   return (
     <div>
@@ -44,14 +52,23 @@ const DemoApp: FC<{
             : undefined
         }
       >
-        <header className="App-header">
+            <header className="App-header">
+        {userPhotoUrl ? (
+          <img
+            onClick={handleRequestBeta}
+            src={userPhotoUrl}
+            className="App-logo"
+            alt="user photo"
+          />
+        ) : (
           <img
             onClick={handleRequestBeta}
             src={logo}
             className="App-logo"
             alt="logo"
           />
-        </header>
+        )}
+      </header>
         <div className="contentWrapper">
           {isBetaVersion && (
             <div className="betaVersion">
