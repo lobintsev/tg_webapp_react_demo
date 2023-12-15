@@ -34,7 +34,7 @@ const ScanQrPopupDemo = () => {
                   showPopup({
                     message: 'Вы сканироваои QR с текстом ' + text,
                   });
-                  switchInlineQuery(text);
+                  switchInlineQuery("your query", "users");
                 },
               )
             }
