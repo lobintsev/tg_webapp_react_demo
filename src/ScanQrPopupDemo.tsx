@@ -2,11 +2,13 @@ import { Button, Form, Typography } from 'antd';
 import {
   useScanQrPopup,
   useShowPopup,
+  useSwitchInlineQuery,
 } from '@vkruglikov/react-telegram-web-app';
 
 const ScanQrPopupDemo = () => {
   const [showQrPopup, closeQrPopup] = useScanQrPopup();
   const showPopup = useShowPopup();
+  const switchInlineQuery = useSwitchInlineQuery();
 
   return (
     <>
@@ -32,6 +34,7 @@ const ScanQrPopupDemo = () => {
                   showPopup({
                     message: 'Вы сканироваои QR с текстом ' + text,
                   });
+                  switchInlineQuery(text);
                 },
               )
             }
