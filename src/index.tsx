@@ -8,7 +8,6 @@ import { ConfigProvider, theme } from 'antd';
 import 'antd/dist/reset.css';
 
 import './index.css';
-import logo from './logo.svg';
 
 import MainButtonDemo from './MainButtonDemo';
 import BackButtonDemo from './BackButtonDemo';
@@ -53,21 +52,14 @@ const DemoApp: FC<{
         }
       >
             <header className="App-header">
-        {userPhotoUrl ? (
-          <img
-            onClick={handleRequestBeta}
-            src={userPhotoUrl}
-            className="App-logo"
-            alt="user photo"
-          />
-        ) : (
-          <img
-            onClick={handleRequestBeta}
-            src={logo}
-            className="App-logo"
-            alt="logo"
-          />
-        )}
+     
+            <img
+              onClick={handleRequestBeta}
+              src={userPhotoUrl}
+              className="App-logo"
+              alt="user"
+            />
+          
       </header>
         <div className="contentWrapper">
           {isBetaVersion && (
