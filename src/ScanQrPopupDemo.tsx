@@ -30,7 +30,7 @@ const ScanQrPopupDemo = () => {
                 text => {
                   closeQrPopup();
                   showPopup({
-                    message: text,
+                    message: 'Вы сканироваои QR с текстом ' + text,
                   });
                 },
               )
